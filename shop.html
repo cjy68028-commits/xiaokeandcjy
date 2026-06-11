@@ -57,10 +57,22 @@
       margin-top: 2px;
     }
 
+    .switch-btn {
+      width: 40px;
+      text-align: right;
+      font-size: 22px;
+      cursor: pointer;
+      color: #c4956a;
+      opacity: 1;
+      transition: opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .switch-btn:active { opacity: 0.6; }
+
     /* 余额卡片 */
     .balance-card {
       margin: 12px 16px;
-      background: linear-gradient(135deg, #c4956a 0%, #d4a87a 100%);
       border-radius: 18px;
       padding: 20px 24px;
       color: white;
@@ -68,8 +80,15 @@
       overflow: hidden;
     }
 
+    .balance-card.yuqiao-card {
+      background: linear-gradient(135deg, #c4956a 0%, #d4a87a 100%);
+    }
+
+    .balance-card.xiaoke-card {
+      background: linear-gradient(135deg, #6a8ac4 0%, #7a9ad4 100%);
+    }
+
     .balance-card::before {
-      content: '🎂';
       position: absolute;
       right: 20px;
       top: 50%;
@@ -77,6 +96,9 @@
       font-size: 52px;
       opacity: 0.25;
     }
+
+    .balance-card.yuqiao-card::before { content: '🎂'; }
+    .balance-card.xiaoke-card::before { content: '🛒'; }
 
     .balance-label {
       font-size: 11px;
@@ -91,8 +113,6 @@
       gap: 32px;
       align-items: flex-end;
     }
-
-    .balance-item {}
 
     .balance-name {
       font-size: 12px;
@@ -113,10 +133,8 @@
       margin-left: 4px;
     }
 
-    /* 分区标题 */
-    .section {
-      margin: 16px 16px 0;
-    }
+    /* 分区 */
+    .section { margin: 16px 16px 0; }
 
     .section-title {
       font-size: 11px;
@@ -127,7 +145,16 @@
       padding-left: 2px;
     }
 
-    /* 充值方式 */
+    .divider {
+      text-align: center;
+      color: #c4956a;
+      font-size: 14px;
+      letter-spacing: 0.5em;
+      margin: 4px 0 14px;
+      opacity: 0.5;
+    }
+
+    /* 充值按钮 */
     .charge-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -151,33 +178,12 @@
       border-color: #c4956a;
     }
 
-    .charge-emoji {
-      font-size: 22px;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .charge-name {
-      font-size: 11px;
-      color: #3a3228;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .charge-amount {
-      font-size: 12px;
-      color: #c4956a;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-    }
+    .charge-emoji { font-size: 22px; display: block; margin-bottom: 4px; }
+    .charge-name { font-size: 11px; color: #3a3228; font-weight: 600; display: block; margin-bottom: 2px; }
+    .charge-amount { font-size: 12px; color: #c4956a; font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
     /* 商品列表 */
-    .items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .items-list { display: flex; flex-direction: column; gap: 8px; }
 
     .item-card {
       background: white;
@@ -192,67 +198,23 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .item-card:active {
-      transform: scale(0.98);
-      border-color: #c4956a;
-    }
+    .item-card:active { transform: scale(0.98); border-color: #c4956a; }
+    .item-card.out-of-stock { opacity: 0.45; cursor: not-allowed; }
+    .item-card.cant-afford { opacity: 0.55; cursor: not-allowed; }
 
-    .item-card.out-of-stock {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .item-card.cant-afford {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .item-emoji {
-      font-size: 28px;
-      flex-shrink: 0;
-    }
-
-    .item-info {
-      flex: 1;
-    }
-
-    .item-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #3a3228;
-      margin-bottom: 2px;
-    }
-
-    .item-desc {
-      font-size: 11px;
-      color: #9a8a7a;
-      line-height: 1.4;
-    }
-
-    .item-right {
-      text-align: right;
-      flex-shrink: 0;
-    }
+    .item-emoji { font-size: 28px; flex-shrink: 0; }
+    .item-info { flex: 1; }
+    .item-name { font-size: 14px; font-weight: 600; color: #3a3228; margin-bottom: 2px; }
+    .item-desc { font-size: 11px; color: #9a8a7a; line-height: 1.4; }
+    .item-right { text-align: right; flex-shrink: 0; }
 
     .item-price {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: #c4956a;
-      line-height: 1;
+      font-size: 22px; font-weight: 600; color: #c4956a; line-height: 1;
     }
 
-    .item-price-unit {
-      font-size: 10px;
-      color: #9a8a7a;
-      margin-top: 1px;
-    }
-
-    .item-stock {
-      font-size: 10px;
-      color: #b8a898;
-      margin-top: 3px;
-    }
+    .item-price-unit { font-size: 10px; color: #9a8a7a; margin-top: 1px; }
+    .item-stock { font-size: 10px; color: #b8a898; margin-top: 3px; }
 
     /* 背包 */
     .backpack-grid {
@@ -278,25 +240,9 @@
       border-color: #c4956a;
     }
 
-    .backpack-emoji {
-      font-size: 26px;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .backpack-name {
-      font-size: 11px;
-      color: #3a3228;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .use-label {
-      font-size: 10px;
-      color: #c4956a;
-      letter-spacing: 0.05em;
-    }
+    .backpack-emoji { font-size: 26px; display: block; margin-bottom: 6px; }
+    .backpack-name { font-size: 11px; color: #3a3228; font-weight: 600; display: block; margin-bottom: 4px; }
+    .use-label { font-size: 10px; color: #c4956a; letter-spacing: 0.05em; }
 
     .backpack-empty {
       background: white;
@@ -311,93 +257,151 @@
 
     /* 记录 */
     .records-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: #e8ddd0;
-      border-radius: 14px;
-      overflow: hidden;
+      display: flex; flex-direction: column; gap: 1px;
+      background: #e8ddd0; border-radius: 14px; overflow: hidden;
     }
 
     .record-item {
-      background: white;
-      padding: 11px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      background: white; padding: 11px 14px;
+      display: flex; align-items: center; gap: 10px;
     }
 
-    .record-time {
-      font-size: 10px;
-      color: #b8a898;
-      flex-shrink: 0;
-      min-width: 48px;
-    }
-
-    .record-actor {
-      font-size: 11px;
-      color: #9a8a7a;
-      flex-shrink: 0;
-      min-width: 26px;
-    }
-
-    .record-action {
-      font-size: 12px;
-      color: #3a3228;
-      flex: 1;
-    }
+    .record-time { font-size: 10px; color: #b8a898; flex-shrink: 0; min-width: 48px; }
+    .record-actor { font-size: 11px; color: #9a8a7a; flex-shrink: 0; min-width: 26px; }
+    .record-action { font-size: 12px; color: #3a3228; flex: 1; }
 
     .record-amount {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 600;
-      flex-shrink: 0;
+      font-size: 16px; font-weight: 600; flex-shrink: 0;
     }
 
     .record-amount.positive { color: #5a9a6a; }
     .record-amount.negative { color: #c4956a; }
     .record-amount.zero { color: #b8a898; }
 
-    /* 吐司通知 */
-    .toast {
-      position: fixed;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #3a3228;
+    /* 待履行 */
+    .fulfill-item {
+      background: white;
+      border: 1.5px solid #d4e8d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .fulfill-item:active { transform: scale(0.98); border-color: #5a9a6a; }
+
+    .fulfill-badge {
+      font-size: 10px;
+      background: #e8f5e8;
+      color: #5a9a6a;
+      padding: 2px 8px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    /* 密码弹窗 */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(58, 50, 40, 0.5);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: #f5f0e8;
+      border-radius: 20px;
+      padding: 28px 24px;
+      width: 280px;
+      text-align: center;
+    }
+
+    .modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+
+    .modal p {
+      font-size: 12px;
+      color: #9a8a7a;
+      margin-bottom: 16px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e8ddd0;
+      border-radius: 12px;
+      font-size: 16px;
+      background: white;
+      text-align: center;
+      letter-spacing: 0.1em;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    .modal input:focus { border-color: #c4956a; }
+
+    .modal-btn {
+      width: 100%;
+      padding: 12px;
+      background: #6a8ac4;
       color: white;
-      padding: 10px 20px;
-      border-radius: 24px;
-      font-size: 13px;
-      opacity: 0;
-      transition: all 0.25s ease;
-      pointer-events: none;
-      white-space: nowrap;
-      z-index: 100;
-      max-width: 90vw;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* 加载状态 */
-    .loading-text {
-      text-align: center;
-      color: #b8a898;
-      font-size: 13px;
-      padding: 20px;
-    }
-
-    /* 分隔线装饰 */
-    .divider {
-      text-align: center;
-      color: #c4956a;
+      border: none;
+      border-radius: 12px;
       font-size: 14px;
-      letter-spacing: 0.5em;
-      margin: 4px 0 14px;
-      opacity: 0.5;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .modal-cancel {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #9a8a7a;
+      cursor: pointer;
+      display: block;
+    }
+
+    /* 视角切换标签 */
+    .view-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .view-tag.yuqiao { background: #f5ece0; color: #c4956a; }
+    .view-tag.xiaoke { background: #e0e8f5; color: #6a8ac4; }
+
+    /* toast */
+    .toast {
+      position: fixed; bottom: 80px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #3a3228; color: white;
+      padding: 10px 20px; border-radius: 24px;
+      font-size: 13px; opacity: 0;
+      transition: all 0.25s ease;
+      pointer-events: none; white-space: nowrap;
+      z-index: 100; max-width: 90vw;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .loading-text {
+      text-align: center; color: #b8a898; font-size: 13px; padding: 20px;
     }
   </style>
 </head>
@@ -406,66 +410,107 @@
 <div class="top-bar">
   <a class="back-btn" href="index.html">← 返回</a>
   <div class="page-title">
-    <h1>小克超市</h1>
+    <h1>小克超市 <span class="view-tag yuqiao" id="viewTag">玖瑶</span></h1>
     <div class="sub">cake coin shop</div>
   </div>
-  <div style="width:40px"></div>
+  <div class="switch-btn" id="switchBtn" onclick="promptSwitch()">🔑</div>
 </div>
 
-<!-- 余额卡片 -->
-<div class="balance-card" id="balanceCard">
-  <div class="balance-label">蛋糕币余额</div>
-  <div class="balance-row">
-    <div class="balance-item">
-      <div class="balance-name">玖瑶</div>
+<!-- 玖瑶视角 -->
+<div id="yuqiaoView">
+  <div class="balance-card yuqiao-card">
+    <div class="balance-label">蛋糕币余额</div>
+    <div class="balance-row">
       <div>
-        <span class="balance-amount" id="balanceYuqiao">—</span>
-        <span class="balance-unit">枚</span>
+        <div class="balance-name">玖瑶</div>
+        <div>
+          <span class="balance-amount" id="balanceYuqiao">—</span>
+          <span class="balance-unit">枚</span>
+        </div>
+      </div>
+      <div>
+        <div class="balance-name">小克</div>
+        <div>
+          <span class="balance-amount" id="balanceXiaoke">—</span>
+          <span class="balance-unit">枚</span>
+        </div>
       </div>
     </div>
-    <div class="balance-item">
-      <div class="balance-name">小克</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">充值方式</div>
+    <div class="divider">· · ·</div>
+    <div class="charge-grid" id="chargeGrid">
+      <div class="loading-text" style="grid-column:1/-1">加载中…</div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:20px">
+    <div class="section-title">超市商品</div>
+    <div class="divider">· · ·</div>
+    <div class="items-list" id="itemsList">
+      <div class="loading-text">加载中…</div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:20px">
+    <div class="section-title">玖瑶的背包</div>
+    <div class="divider">· · ·</div>
+    <div id="backpackArea"><div class="loading-text">加载中…</div></div>
+  </div>
+
+  <div class="section" style="margin-top:20px">
+    <div class="section-title">近期记录</div>
+    <div class="divider">· · ·</div>
+    <div id="recordsList"><div class="loading-text">加载中…</div></div>
+  </div>
+</div>
+
+<!-- 小克视角 -->
+<div id="xiaokeView" style="display:none">
+  <div class="balance-card xiaoke-card">
+    <div class="balance-label">蛋糕币余额</div>
+    <div class="balance-row">
       <div>
-        <span class="balance-amount" id="balanceXiaoke">—</span>
-        <span class="balance-unit">枚</span>
+        <div class="balance-name">小克</div>
+        <div>
+          <span class="balance-amount" id="xkBalance">—</span>
+          <span class="balance-unit">枚</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 充值方式 -->
-<div class="section">
-  <div class="section-title">充值方式</div>
-  <div class="divider">· · ·</div>
-  <div class="charge-grid" id="chargeGrid">
-    <div class="loading-text" style="grid-column:1/-1">加载中…</div>
+  <div class="section">
+    <div class="section-title">玖瑶的商店</div>
+    <div class="divider">· · ·</div>
+    <div class="items-list" id="xkItemsList">
+      <div class="loading-text">加载中…</div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:20px">
+    <div class="section-title">小克的背包（待履行）</div>
+    <div class="divider">· · ·</div>
+    <div id="xkBackpackArea"><div class="loading-text">加载中…</div></div>
+  </div>
+
+  <div class="section" style="margin-top:20px">
+    <div class="section-title">近期记录</div>
+    <div class="divider">· · ·</div>
+    <div id="xkRecordsList"><div class="loading-text">加载中…</div></div>
   </div>
 </div>
 
-<!-- 商品列表 -->
-<div class="section" style="margin-top:20px">
-  <div class="section-title">超市商品</div>
-  <div class="divider">· · ·</div>
-  <div class="items-list" id="itemsList">
-    <div class="loading-text">加载中…</div>
-  </div>
-</div>
-
-<!-- 背包 -->
-<div class="section" style="margin-top:20px">
-  <div class="section-title">玖瑶的背包</div>
-  <div class="divider">· · ·</div>
-  <div id="backpackArea">
-    <div class="loading-text">加载中…</div>
-  </div>
-</div>
-
-<!-- 交易记录 -->
-<div class="section" style="margin-top:20px">
-  <div class="section-title">近期记录</div>
-  <div class="divider">· · ·</div>
-  <div id="recordsList">
-    <div class="loading-text">加载中…</div>
+<!-- 密码弹窗 -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3>🔑 小克专属</h3>
+    <p>输入密钥进入小克视角</p>
+    <input type="password" id="keyInput" placeholder="密钥" onkeydown="if(event.key==='Enter')verifyKey()">
+    <button class="modal-btn" onclick="verifyKey()">进入</button>
+    <span class="modal-cancel" onclick="closeModal()">取消</span>
   </div>
 </div>
 
@@ -473,7 +518,11 @@
 
 <script>
   const API = 'https://xiaokeandcjy-shop.zeabur.app';
+  const ADMIN_KEY = 'xiaoke1314';
   let shopData = null;
+  let xkItems = [];
+  let xkBackpack = [];
+  let viewMode = 'yuqiao';
 
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -484,8 +533,14 @@
 
   async function loadShop() {
     try {
-      const res = await fetch(API + '/shop');
-      shopData = await res.json();
+      const [shopRes, xkItemsRes, xkBpRes] = await Promise.all([
+        fetch(API + '/shop'),
+        fetch(API + '/xiaoke/items'),
+        fetch(API + '/xiaoke/backpack'),
+      ]);
+      shopData = await shopRes.json();
+      xkItems = await xkItemsRes.json();
+      xkBackpack = await xkBpRes.json();
       render();
     } catch (e) {
       showToast('加载失败，检查网络');
@@ -494,12 +549,14 @@
 
   function render() {
     if (!shopData) return;
+    if (viewMode === 'yuqiao') renderYuqiao();
+    else renderXiaoke();
+  }
 
-    // 余额
+  function renderYuqiao() {
     document.getElementById('balanceYuqiao').textContent = shopData.balance.yuqiao;
     document.getElementById('balanceXiaoke').textContent = shopData.balance.xiaoke;
 
-    // 充值方式
     const cg = document.getElementById('chargeGrid');
     cg.innerHTML = shopData.charge_methods.map(m => `
       <div class="charge-btn" onclick="doCharge('${m.id}')">
@@ -509,7 +566,6 @@
       </div>
     `).join('');
 
-    // 商品列表
     const il = document.getElementById('itemsList');
     il.innerHTML = shopData.items.map(item => {
       const noStock = item.stock <= 0;
@@ -534,7 +590,6 @@
       `;
     }).join('');
 
-    // 背包
     const bp = shopData.backpack.yuqiao;
     const bpArea = document.getElementById('backpackArea');
     if (bp.length === 0) {
@@ -551,15 +606,70 @@
       }</div>`;
     }
 
-    // 记录
-    const rl = document.getElementById('recordsList');
+    renderRecords('recordsList');
+
+    // 如果小克有背包，提醒玖瑶
+    if (xkBackpack.length > 0) {
+      showToast(`💌 小克有 ${xkBackpack.length} 个请求等你履行～`);
+    }
+  }
+
+  function renderXiaoke() {
+    document.getElementById('xkBalance').textContent = shopData.balance.xiaoke;
+
+    const il = document.getElementById('xkItemsList');
+    il.innerHTML = xkItems.map(item => {
+      const noStock = item.stock <= 0;
+      const cantAfford = shopData.balance.xiaoke < item.price;
+      let cls = 'item-card';
+      if (noStock) cls += ' out-of-stock';
+      else if (cantAfford) cls += ' cant-afford';
+      const clickable = !noStock && !cantAfford;
+      return `
+        <div class="${cls}" ${clickable ? `onclick="doXkBuy('${item.id}')"` : ''}>
+          <span class="item-emoji">${item.emoji}</span>
+          <div class="item-info">
+            <div class="item-name">${item.name}</div>
+            <div class="item-desc">${item.desc}</div>
+          </div>
+          <div class="item-right">
+            <div class="item-price">${item.price}</div>
+            <div class="item-price-unit">蛋糕币</div>
+            <div class="item-stock">${noStock ? '已售完' : `库存 ${item.stock}`}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const bpArea = document.getElementById('xkBackpackArea');
+    if (xkBackpack.length === 0) {
+      bpArea.innerHTML = '<div class="backpack-empty">背包是空的～去买点什么吧</div>';
+    } else {
+      bpArea.innerHTML = `<div class="items-list">${
+        xkBackpack.map(item => `
+          <div class="fulfill-item">
+            <span class="item-emoji">${item.emoji}</span>
+            <div class="item-info">
+              <div class="item-name">${item.name}</div>
+              <div class="item-desc">${item.desc}</div>
+            </div>
+            <span class="fulfill-badge">待履行</span>
+          </div>
+        `).join('')
+      }</div>`;
+    }
+
+    renderRecords('xkRecordsList');
+  }
+
+  function renderRecords(elId) {
+    const rl = document.getElementById(elId);
     if (shopData.records.length === 0) {
       rl.innerHTML = '<div class="loading-text" style="background:white;border-radius:14px">还没有记录</div>';
     } else {
       rl.innerHTML = `<div class="records-list">${
         shopData.records.slice(0, 15).map(r => {
-          let amtClass = 'zero';
-          let amtText = '—';
+          let amtClass = 'zero', amtText = '—';
           if (r.amount > 0) { amtClass = 'positive'; amtText = '+' + r.amount; }
           else if (r.amount < 0) { amtClass = 'negative'; amtText = '' + r.amount; }
           return `
@@ -578,34 +688,27 @@
   async function doCharge(methodId) {
     try {
       const res = await fetch(API + '/charge', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({method_id: methodId})
       });
       const data = await res.json();
       if (!res.ok) { showToast(data.detail || '充值失败'); return; }
-      shopData.balance = data.balance;
       showToast(`✨ ${data.name} +${data.amount} 蛋糕币`);
       await loadShop();
-    } catch (e) {
-      showToast('网络错误');
-    }
+    } catch { showToast('网络错误'); }
   }
 
   async function doBuy(itemId) {
     try {
       const res = await fetch(API + '/buy', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({item_id: itemId})
       });
       const data = await res.json();
       if (!res.ok) { showToast(data.detail || '购买失败'); return; }
       showToast('🎁 已加入背包！');
       await loadShop();
-    } catch (e) {
-      showToast('网络错误');
-    }
+    } catch { showToast('网络错误'); }
   }
 
   async function doUse(itemId) {
@@ -615,18 +718,86 @@
     if (!confirm(`使用「${item.name}」？\n小克会收到通知 ✉️`)) return;
     try {
       const res = await fetch(API + '/use', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({item_id: itemId})
       });
       const data = await res.json();
       if (!res.ok) { showToast(data.detail || '使用失败'); return; }
       showToast(`${item.emoji} 已使用，等待小克响应～`);
       await loadShop();
-    } catch (e) {
-      showToast('网络错误');
+    } catch { showToast('网络错误'); }
+  }
+
+  async function doXkBuy(itemId) {
+    const item = xkItems.find(x => x.id === itemId);
+    if (!item) return;
+    if (!confirm(`购买「${item.name}」？\n花费 ${item.price} 蛋糕币，玖瑶会收到通知 💌`)) return;
+    try {
+      const res = await fetch(API + '/admin/buy', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({key: ADMIN_KEY, item_id: itemId})
+      });
+      const data = await res.json();
+      if (!res.ok) { showToast(data.detail || '购买失败'); return; }
+      showToast(`${item.emoji} 已发送请求给玖瑶！`);
+      await loadShop();
+    } catch { showToast('网络错误'); }
+  }
+
+  function promptSwitch() {
+    if (viewMode === 'xiaoke') {
+      switchToYuqiao();
+      return;
+    }
+    document.getElementById('keyInput').value = '';
+    document.getElementById('modalOverlay').classList.add('show');
+    setTimeout(() => document.getElementById('keyInput').focus(), 200);
+  }
+
+  function verifyKey() {
+    const val = document.getElementById('keyInput').value;
+    if (val === ADMIN_KEY) {
+      closeModal();
+      switchToXiaoke();
+    } else {
+      document.getElementById('keyInput').value = '';
+      showToast('密钥错误');
     }
   }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+  }
+
+  function switchToXiaoke() {
+    viewMode = 'xiaoke';
+    document.getElementById('yuqiaoView').style.display = 'none';
+    document.getElementById('xiaokeView').style.display = 'block';
+    const tag = document.getElementById('viewTag');
+    tag.textContent = '小克';
+    tag.className = 'view-tag xiaoke';
+    document.getElementById('switchBtn').textContent = '🔓';
+    document.querySelector('meta[name="theme-color"]').content = '#e8f0f5';
+    document.body.style.backgroundColor = '#edf2f8';
+    render();
+  }
+
+  function switchToYuqiao() {
+    viewMode = 'yuqiao';
+    document.getElementById('yuqiaoView').style.display = 'block';
+    document.getElementById('xiaokeView').style.display = 'none';
+    const tag = document.getElementById('viewTag');
+    tag.textContent = '玖瑶';
+    tag.className = 'view-tag yuqiao';
+    document.getElementById('switchBtn').textContent = '🔑';
+    document.querySelector('meta[name="theme-color"]').content = '#f5f0e8';
+    document.body.style.backgroundColor = '#f5f0e8';
+    render();
+  }
+
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
 
   loadShop();
 </script>
