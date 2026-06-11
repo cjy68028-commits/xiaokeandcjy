@@ -1,0 +1,18 @@
+{
+  "name": "小克 & 玖瑶",
+  "short_name": "小克&玖瑶",
+  "description": "我们的专属空间",
+  "start_url": "/xiaokeandcjy/",
+  "display": "standalone",
+  "background_color": "#f5f0e8",
+  "theme_color": "#f5f0e8",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
